@@ -53,7 +53,15 @@ EndDeviceLoraPhy::GetTypeId (void)
                      "The current state of the device",
                      MakeTraceSourceAccessor
                        (&EndDeviceLoraPhy::m_state),
-                     "ns3::TracedValueCallback::EndDeviceLoraPhy::State");
+                     "ns3::TracedValueCallback::EndDeviceLoraPhy::State")
+    .AddTraceSource ("TxPower",
+                     "The transmit power of the transceiver, in dBm",
+                     MakeTraceSourceAccessor (&EndDeviceLoraPhy::m_txPowerDbm),
+                     "ns3::TracedValueCallback::double")
+    .AddTraceSource("Bandwidth",
+                     "The bandwidth of the currently used channel, in Hz",
+                     MakeTraceSourceAccessor (&EndDeviceLoraPhy::m_bandwidth),
+                     "ns3::TracedValueCallback::double");
   return tid;
 }
 
@@ -95,6 +103,10 @@ EndDeviceLoraPhy::Send (Ptr<Packet> packet, LoraTxParameters txParams,
   NS_LOG_FUNCTION (this << packet << txParams << frequencyMHz << txPowerDbm);
 
   NS_LOG_INFO ("Current state: " << m_state);
+
+  //these two are just for tracing purposes
+  m_txPowerDbm = txPowerDbm;
+  m_bandwidth = txParams.bandwidthHz;
 
   // We must be either in STANDBY or SLEEP mode to send a packet
   if (m_state != STANDBY && m_state != SLEEP)

@@ -33,6 +33,8 @@ def build(bld):
         'model/simple-network-server.cc',
         'model/device-status.cc',
         'model/gateway-status.cc',
+        'model/lorawan-radio-energy-model.cc',
+        'model/lorawan-current-model.cc',
         'helper/lora-helper.cc',
         'helper/lora-phy-helper.cc',
         'helper/lora-mac-helper.cc',
@@ -40,6 +42,7 @@ def build(bld):
         'helper/one-shot-sender-helper.cc',
         'helper/forwarder-helper.cc',
         'helper/network-server-helper.cc',
+        'helper/lorawan-radio-energy-model-helper.cc'
         ]
 
     module_test = bld.create_ns3_module_test_library('lorawan')
@@ -74,6 +77,8 @@ def build(bld):
         'model/simple-network-server.h',
         'model/device-status.h',
         'model/gateway-status.h',
+        'model/lorawan-radio-energy-model.h',
+        'model/lorawan-current-model.h',
         'helper/lora-helper.h',
         'helper/lora-phy-helper.h',
         'helper/lora-mac-helper.h',
@@ -81,6 +86,7 @@ def build(bld):
         'helper/one-shot-sender-helper.h',
         'helper/forwarder-helper.h',
         'helper/network-server-helper.h',
+        'helper/lorawan-radio-energy-model-helper.h'
         ]
 
     if bld.env.ENABLE_EXAMPLES:

@@ -188,6 +188,9 @@ private:
 
   uint8_t m_sf; //!< The Spreading Factor this device is listening for
 
+  TracedValue<double> m_txPowerDbm; //for tracing purposes
+  TracedValue<double> m_bandwidth;
+
 };
 
 } /* namespace ns3 */
